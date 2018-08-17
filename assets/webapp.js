@@ -1749,6 +1749,6 @@ catch(err) {
 });
 
 if (!runningTests) {
-  require("webapp/app")["default"].create({"api":{"host":"https://majnikov.github.io/","namespace":"api"},"name":"webapp","version":"0.0.0+de2e00e5"});
+  require("webapp/app")["default"].create({"api":{"host":"https://majnikov.github.io","namespace":"api"},"name":"webapp","version":"0.0.0+de2e00e5"});
 }
 //# sourceMappingURL=webapp.map
