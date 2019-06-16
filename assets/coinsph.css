@@ -1,0 +1,8 @@
+@import 'components/form/form-input.css';
+@import 'components/login-form.css';
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
