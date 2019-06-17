@@ -1,65 +1,55 @@
 'use strict';
 
-define("coinsph/tests/acceptance/signup-base-scenario-test", ["qunit", "@ember/test-helpers", "ember-qunit", "ember-cli-mirage/test-support/setup-mirage"], function (_qunit, _testHelpers, _emberQunit, _setupMirage) {
+define("coinsph/tests/acceptance/signup-form-test", ["qunit", "@ember/test-helpers", "ember-qunit", "ember-cli-mirage/test-support/setup-mirage"], function (_qunit, _testHelpers, _emberQunit, _setupMirage) {
   "use strict";
 
   const SELECTORS = {
-    username: '#username',
-    email: '#email',
-    password: '#password',
-    passwordConfirm: '#passwordConfirm',
-    submit: '#submit',
-    thanks: '#thanks'
+    username: '[data-test-signup-username]',
+    email: '[data-test-signup-email]',
+    password: '[data-test-signup-password]',
+    passwordConfirm: '[data-test-signup-passwordConfirm]',
+    submit: '[data-test-signup-submit]',
+    thanks: '[data-test-thanks-title]',
+    errorMessage: '[data-test-error-message]'
   };
-  (0, _qunit.module)('Acceptance | sign-up base scenario', function (hooks) {
+  const CLASSES = {
+    error: 'form-input__invalid'
+  };
+  (0, _qunit.module)('Acceptance | sign-up form', function (hooks) {
     (0, _emberQunit.setupApplicationTest)(hooks);
     (0, _setupMirage.default)(hooks);
     (0, _qunit.test)('sign-up base scenario', async function (assert) {
       await (0, _testHelpers.visit)('/');
       assert.equal((0, _testHelpers.currentURL)(), '/sign-up', 'Redirected to the sign-up page');
-      assert.notOk((0, _testHelpers.find)(SELECTORS.thanks), 'Thanks message is hidden');
-      await (0, _testHelpers.fillIn)(SELECTORS.username, 'test name');
-      await (0, _testHelpers.fillIn)(SELECTORS.email, 'test@test.com');
-      await (0, _testHelpers.fillIn)(SELECTORS.password, '12345');
-      await (0, _testHelpers.fillIn)(SELECTORS.passwordConfirm, '12345');
+      assert.dom(SELECTORS.thanks).doesNotExist('Thanks message is hidden');
+      await (0, _testHelpers.fillIn)("".concat(SELECTORS.username, " input"), 'test name');
+      await (0, _testHelpers.fillIn)("".concat(SELECTORS.email, " input"), 'test@test.com');
+      await (0, _testHelpers.fillIn)("".concat(SELECTORS.password, " input"), '12345');
+      await (0, _testHelpers.fillIn)("".concat(SELECTORS.passwordConfirm, " input"), '12345');
+      assert.dom("".concat(SELECTORS.submit)).isNotDisabled('submit button is not disabled');
       await (0, _testHelpers.click)(SELECTORS.submit);
-      assert.equal((0, _testHelpers.currentURL)(), '/', 'Redirected to the root page');
-      assert.ok((0, _testHelpers.find)(SELECTORS.thanks), 'Thanks message was shown');
+      assert.equal((0, _testHelpers.currentURL)(), '/thanks', 'Redirected to the thanks page');
+      assert.dom(SELECTORS.thanks).exists('Thanks message was shown');
     });
-  });
-});
-define("coinsph/tests/acceptance/signup-validators-test", ["qunit", "@ember/test-helpers", "ember-qunit", "ember-cli-mirage/test-support/setup-mirage"], function (_qunit, _testHelpers, _emberQunit, _setupMirage) {
-  "use strict";
-
-  const SELECTORS = {
-    username: '#username',
-    email: '#email',
-    password: '#password',
-    passwordConfirm: '#passwordConfirm',
-    submit: '#submit',
-    thanks: '#thanks'
-  };
-  const CLASSES = {
-    error: 'form-input__invalid'
-  };
-  (0, _qunit.module)('Acceptance | sign-up validators test', function (hooks) {
-    (0, _emberQunit.setupApplicationTest)(hooks);
-    (0, _setupMirage.default)(hooks);
     (0, _qunit.test)('sign-up validators', async function (assert) {
-      await (0, _testHelpers.visit)('/');
-      assert.notOk((0, _testHelpers.find)("".concat(SELECTORS.username, ".").concat(CLASSES.error)), 'username field without error class');
-      assert.notOk((0, _testHelpers.find)("".concat(SELECTORS.email, ".").concat(CLASSES.error)), 'email field without error class');
-      assert.notOk((0, _testHelpers.find)("".concat(SELECTORS.password, ".").concat(CLASSES.error)), 'password field without error class');
-      assert.notOk((0, _testHelpers.find)("".concat(SELECTORS.passwordConfirm, ".").concat(CLASSES.error)), 'passwordConfirm field without error class');
-      assert.ok((0, _testHelpers.find)("".concat(SELECTORS.submit, ":disabled")), 'submit button is disabled');
-      await (0, _testHelpers.blur)(SELECTORS.username);
-      await (0, _testHelpers.blur)(SELECTORS.email);
-      await (0, _testHelpers.blur)(SELECTORS.password);
-      await (0, _testHelpers.blur)(SELECTORS.passwordConfirm);
-      assert.ok((0, _testHelpers.find)("".concat(SELECTORS.username, ".").concat(CLASSES.error)), 'username field has error class');
-      assert.ok((0, _testHelpers.find)("".concat(SELECTORS.email, ".").concat(CLASSES.error)), 'email field has error class');
-      assert.ok((0, _testHelpers.find)("".concat(SELECTORS.password, ".").concat(CLASSES.error)), 'password field has error class');
-      assert.ok((0, _testHelpers.find)("".concat(SELECTORS.passwordConfirm, ".").concat(CLASSES.error)), 'passwordConfirm field has error class');
+      await (0, _testHelpers.visit)('/sign-up');
+      assert.dom("".concat(SELECTORS.username, ".").concat(CLASSES.error)).doesNotExist('username field without error class');
+      assert.dom("".concat(SELECTORS.email, ".").concat(CLASSES.error)).doesNotExist('email field without error class');
+      assert.dom("".concat(SELECTORS.password, ".").concat(CLASSES.error)).doesNotExist('password field without error class');
+      assert.dom("".concat(SELECTORS.passwordConfirm, ".").concat(CLASSES.error)).doesNotExist('passwordConfirm field without error class');
+      assert.dom("".concat(SELECTORS.submit)).isDisabled('submit button is disabled');
+      await (0, _testHelpers.fillIn)("".concat(SELECTORS.username, " input"), '');
+      await (0, _testHelpers.blur)("".concat(SELECTORS.username, " input"));
+      assert.dom("".concat(SELECTORS.username, " ").concat(SELECTORS.errorMessage)).exists('username error shown');
+      await (0, _testHelpers.fillIn)("".concat(SELECTORS.email, " input"), '');
+      await (0, _testHelpers.blur)("".concat(SELECTORS.email, " input"));
+      assert.dom("".concat(SELECTORS.email, " ").concat(SELECTORS.errorMessage)).exists('email error shown');
+      await (0, _testHelpers.fillIn)("".concat(SELECTORS.password, " input"), '');
+      await (0, _testHelpers.blur)("".concat(SELECTORS.password, " input"));
+      assert.dom("".concat(SELECTORS.password, " ").concat(SELECTORS.errorMessage)).exists('password error shown');
+      await (0, _testHelpers.fillIn)("".concat(SELECTORS.passwordConfirm, " input"), '');
+      await (0, _testHelpers.blur)("".concat(SELECTORS.passwordConfirm, " input"));
+      assert.dom("".concat(SELECTORS.passwordConfirm, " ").concat(SELECTORS.errorMessage)).exists('passwordConfirm error shown');
     });
   });
 });
@@ -87,10 +77,6 @@ define("coinsph/tests/lint/app.lint-test", [], function () {
     assert.expect(1);
     assert.ok(true, 'components/form/form-input.js should pass ESLint\n\n');
   });
-  QUnit.test('components/login-form.js', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'components/login-form.js should pass ESLint\n\n');
-  });
   QUnit.test('const/errors.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'const/errors.js should pass ESLint\n\n');
@@ -114,6 +100,10 @@ define("coinsph/tests/lint/app.lint-test", [], function () {
   QUnit.test('routes/application.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'routes/application.js should pass ESLint\n\n');
+  });
+  QUnit.test('routes/sign-up.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'routes/sign-up.js should pass ESLint\n\n');
   });
   QUnit.test('validators/sign-up.js', function (assert) {
     assert.expect(1);
@@ -140,30 +130,22 @@ define("coinsph/tests/lint/templates.template.lint-test", [], function () {
     assert.expect(1);
     assert.ok(true, 'coinsph/templates/components/form/form-input.hbs should pass TemplateLint.\n\n');
   });
-  QUnit.test('coinsph/templates/components/login-form.hbs', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'coinsph/templates/components/login-form.hbs should pass TemplateLint.\n\n');
-  });
-  QUnit.test('coinsph/templates/index.hbs', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'coinsph/templates/index.hbs should pass TemplateLint.\n\n');
-  });
   QUnit.test('coinsph/templates/sign-up.hbs', function (assert) {
     assert.expect(1);
     assert.ok(true, 'coinsph/templates/sign-up.hbs should pass TemplateLint.\n\n');
+  });
+  QUnit.test('coinsph/templates/thanks.hbs', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'coinsph/templates/thanks.hbs should pass TemplateLint.\n\n');
   });
 });
 define("coinsph/tests/lint/tests.lint-test", [], function () {
   "use strict";
 
   QUnit.module('ESLint | tests');
-  QUnit.test('acceptance/signup-base-scenario-test.js', function (assert) {
+  QUnit.test('acceptance/signup-form-test.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'acceptance/signup-base-scenario-test.js should pass ESLint\n\n');
-  });
-  QUnit.test('acceptance/signup-validators-test.js', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'acceptance/signup-validators-test.js should pass ESLint\n\n');
+    assert.ok(true, 'acceptance/signup-form-test.js should pass ESLint\n\n');
   });
   QUnit.test('test-helper.js', function (assert) {
     assert.expect(1);

@@ -17,7 +17,7 @@
     parseErrorResponse() {
       const result = this._super(...arguments);
 
-      if (result.errors) {
+      if (result && result.errors) {
         Object.keys(result.errors).forEach(key => {
           const tmp = result.errors[key];
           delete result.errors[key];
@@ -122,6 +122,24 @@
           }
         }
       },
+      "year-short": {
+        "displayName": "yr.",
+        "relative": {
+          "0": "this yr.",
+          "1": "next yr.",
+          "-1": "last yr."
+        },
+        "relativeTime": {
+          "future": {
+            "one": "in {0} yr.",
+            "other": "in {0} yr."
+          },
+          "past": {
+            "one": "{0} yr. ago",
+            "other": "{0} yr. ago"
+          }
+        }
+      },
       "month": {
         "displayName": "month",
         "relative": {
@@ -137,6 +155,24 @@
           "past": {
             "one": "{0} month ago",
             "other": "{0} months ago"
+          }
+        }
+      },
+      "month-short": {
+        "displayName": "mo.",
+        "relative": {
+          "0": "this mo.",
+          "1": "next mo.",
+          "-1": "last mo."
+        },
+        "relativeTime": {
+          "future": {
+            "one": "in {0} mo.",
+            "other": "in {0} mo."
+          },
+          "past": {
+            "one": "{0} mo. ago",
+            "other": "{0} mo. ago"
           }
         }
       },
@@ -158,8 +194,29 @@
           }
         }
       },
+      "day-short": {
+        "displayName": "day",
+        "relative": {
+          "0": "today",
+          "1": "tomorrow",
+          "-1": "yesterday"
+        },
+        "relativeTime": {
+          "future": {
+            "one": "in {0} day",
+            "other": "in {0} days"
+          },
+          "past": {
+            "one": "{0} day ago",
+            "other": "{0} days ago"
+          }
+        }
+      },
       "hour": {
         "displayName": "hour",
+        "relative": {
+          "0": "this hour"
+        },
         "relativeTime": {
           "future": {
             "one": "in {0} hour",
@@ -171,8 +228,27 @@
           }
         }
       },
+      "hour-short": {
+        "displayName": "hr.",
+        "relative": {
+          "0": "this hour"
+        },
+        "relativeTime": {
+          "future": {
+            "one": "in {0} hr.",
+            "other": "in {0} hr."
+          },
+          "past": {
+            "one": "{0} hr. ago",
+            "other": "{0} hr. ago"
+          }
+        }
+      },
       "minute": {
         "displayName": "minute",
+        "relative": {
+          "0": "this minute"
+        },
         "relativeTime": {
           "future": {
             "one": "in {0} minute",
@@ -181,6 +257,22 @@
           "past": {
             "one": "{0} minute ago",
             "other": "{0} minutes ago"
+          }
+        }
+      },
+      "minute-short": {
+        "displayName": "min.",
+        "relative": {
+          "0": "this minute"
+        },
+        "relativeTime": {
+          "future": {
+            "one": "in {0} min.",
+            "other": "in {0} min."
+          },
+          "past": {
+            "one": "{0} min. ago",
+            "other": "{0} min. ago"
           }
         }
       },
@@ -199,6 +291,100 @@
             "other": "{0} seconds ago"
           }
         }
+      },
+      "second-short": {
+        "displayName": "sec.",
+        "relative": {
+          "0": "now"
+        },
+        "relativeTime": {
+          "future": {
+            "one": "in {0} sec.",
+            "other": "in {0} sec."
+          },
+          "past": {
+            "one": "{0} sec. ago",
+            "other": "{0} sec. ago"
+          }
+        }
+      }
+    },
+    "numbers": {
+      "decimal": {
+        "long": [[1000, {
+          "one": ["0 thousand", 1],
+          "other": ["0 thousand", 1]
+        }], [10000, {
+          "one": ["00 thousand", 2],
+          "other": ["00 thousand", 2]
+        }], [100000, {
+          "one": ["000 thousand", 3],
+          "other": ["000 thousand", 3]
+        }], [1000000, {
+          "one": ["0 million", 1],
+          "other": ["0 million", 1]
+        }], [10000000, {
+          "one": ["00 million", 2],
+          "other": ["00 million", 2]
+        }], [100000000, {
+          "one": ["000 million", 3],
+          "other": ["000 million", 3]
+        }], [1000000000, {
+          "one": ["0 billion", 1],
+          "other": ["0 billion", 1]
+        }], [10000000000, {
+          "one": ["00 billion", 2],
+          "other": ["00 billion", 2]
+        }], [100000000000, {
+          "one": ["000 billion", 3],
+          "other": ["000 billion", 3]
+        }], [1000000000000, {
+          "one": ["0 trillion", 1],
+          "other": ["0 trillion", 1]
+        }], [10000000000000, {
+          "one": ["00 trillion", 2],
+          "other": ["00 trillion", 2]
+        }], [100000000000000, {
+          "one": ["000 trillion", 3],
+          "other": ["000 trillion", 3]
+        }]],
+        "short": [[1000, {
+          "one": ["0K", 1],
+          "other": ["0K", 1]
+        }], [10000, {
+          "one": ["00K", 2],
+          "other": ["00K", 2]
+        }], [100000, {
+          "one": ["000K", 3],
+          "other": ["000K", 3]
+        }], [1000000, {
+          "one": ["0M", 1],
+          "other": ["0M", 1]
+        }], [10000000, {
+          "one": ["00M", 2],
+          "other": ["00M", 2]
+        }], [100000000, {
+          "one": ["000M", 3],
+          "other": ["000M", 3]
+        }], [1000000000, {
+          "one": ["0B", 1],
+          "other": ["0B", 1]
+        }], [10000000000, {
+          "one": ["00B", 2],
+          "other": ["00B", 2]
+        }], [100000000000, {
+          "one": ["000B", 3],
+          "other": ["000B", 3]
+        }], [1000000000000, {
+          "one": ["0T", 1],
+          "other": ["0T", 1]
+        }], [10000000000000, {
+          "one": ["00T", 2],
+          "other": ["00T", 2]
+        }], [100000000000000, {
+          "one": ["000T", 3],
+          "other": ["000T", 3]
+        }]]
       }
     }
   }];
@@ -229,7 +415,7 @@
   _exports.default = void 0;
 
   var _default = Ember.Component.extend({
-    tagName: '',
+    classNames: ['login-form__group'],
     errorMessage: null,
     isValid: true,
     isValidated: false,
@@ -260,71 +446,6 @@
 
   _exports.default = _default;
 });
-;define("coinsph/components/login-form", ["exports", "coinsph/validators/sign-up", "coinsph/const/errors", "ember-concurrency"], function (_exports, _signUp, _errors, _emberConcurrency) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.default = void 0;
-
-  var _default = Ember.Component.extend(_signUp.default, {
-    store: Ember.inject.service(),
-    classNames: ['login-form'],
-    serverErrors: null,
-    password: null,
-    passwordConfirm: null,
-    user: null,
-    isValidated: Ember.computed.gt('signUpTask.performCount', 0),
-    isInvalid: Ember.computed.not('validations.isValid'),
-    isValidating: Ember.computed.alias('validations.isValidating'),
-    submitDisabled: Ember.computed.or('isValidating', 'isInvalid', 'signUpTask.isRunning'),
-
-    init() {
-      this._init();
-
-      this._super(...arguments);
-    },
-
-    _init() {
-      const store = Ember.get(this, 'store');
-      Ember.set(this, 'user', store.createRecord('user'));
-    },
-
-    willDestroyElement() {
-      Ember.get(this, 'user').unloadRecord();
-    },
-
-    clearServerErrors() {
-      Ember.set(this, 'serverErrors', null);
-    },
-
-    signUpTask: (0, _emberConcurrency.task)(function* () {
-      this.clearServerErrors();
-      yield this.validate();
-
-      if (Ember.get(this, 'isInvalid')) {
-        return;
-      }
-
-      const {
-        password,
-        user
-      } = Ember.getProperties(this, 'password', 'user');
-
-      try {
-        yield user.signUp({
-          password
-        });
-        Ember.get(this, 'onSignUp')();
-      } catch (e) {
-        Ember.set(this, 'serverErrors', e.errors || _errors.DEFAULT_ERROR);
-      }
-    }).drop()
-  });
-
-  _exports.default = _default;
-});
 ;define("coinsph/const/errors", ["exports"], function (_exports) {
   "use strict";
 
@@ -339,7 +460,7 @@
   };
   _exports.DEFAULT_ERROR = DEFAULT_ERROR;
 });
-;define("coinsph/controllers/sign-up", ["exports"], function (_exports) {
+;define("coinsph/controllers/sign-up", ["exports", "coinsph/validators/sign-up", "coinsph/const/errors", "ember-concurrency"], function (_exports, _signUp, _errors, _emberConcurrency) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -347,13 +468,43 @@
   });
   _exports.default = void 0;
 
-  var _default = Ember.Controller.extend({
-    actions: {
-      onSignUp() {
-        this.transitionToRoute('index');
+  var _default = Ember.Controller.extend(_signUp.default, {
+    store: Ember.inject.service(),
+    user: null,
+    password: null,
+    passwordConfirm: null,
+    serverErrors: null,
+    isValidated: false,
+    isInvalid: Ember.computed.alias('validations.isInvalid'),
+    submitDisabled: Ember.computed.or('validations.isValidating', 'isInvalid', 'signUpTask.isRunning'),
+
+    clearServerErrors() {
+      Ember.set(this, 'serverErrors', null);
+    },
+
+    signUpTask: (0, _emberConcurrency.task)(function* () {
+      this.clearServerErrors();
+      yield this.validate();
+      Ember.set(this, 'isValidated', true);
+
+      if (Ember.get(this, 'isInvalid')) {
+        return;
       }
 
-    }
+      const {
+        password,
+        user
+      } = Ember.getProperties(this, 'password', 'user');
+
+      try {
+        yield user.signUp({
+          password
+        });
+        this.transitionToRoute('thanks');
+      } catch (e) {
+        Ember.set(this, 'serverErrors', e.errors || _errors.DEFAULT_ERROR);
+      }
+    }).drop()
   });
 
   _exports.default = _default;
@@ -1037,28 +1188,7 @@
   };
   _exports.default = _default;
 });
-;define("coinsph/instance-initializers/ember-intl", ["exports", "ember-intl/initializer"], function (_exports, _initializer) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  Object.defineProperty(_exports, "instanceInitializer", {
-    enumerable: true,
-    get: function () {
-      return _initializer.instanceInitializer;
-    }
-  });
-  _exports.default = void 0;
-
-  /**
-   * Copyright 2015, Yahoo! Inc.
-   * Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
-   */
-  var _default = _initializer.default;
-  _exports.default = _default;
-});
-;define("coinsph/mirage/config", ["exports", "ember-cli-mirage"], function (_exports, _emberCliMirage) {
+;define("coinsph/mirage/config", ["exports", "ember-cli-mirage", "coinsph/config/environment"], function (_exports, _emberCliMirage, _environment) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -1072,14 +1202,14 @@
     ON_SIGN_UP: ['username1', 'username2', 'username3']
   };
   _exports.TAKEN_USER_NAMES = TAKEN_USER_NAMES;
-  const THROTTLE_CHANCE = 20;
+  const THROTTLE_CHANCE = 30;
   _exports.THROTTLE_CHANCE = THROTTLE_CHANCE;
-  const SERVER_ERROR_CHANCE = 20;
+  const SERVER_ERROR_CHANCE = 30;
   _exports.SERVER_ERROR_CHANCE = SERVER_ERROR_CHANCE;
 
   function _default() {
-    this.urlPrefix = '';
-    this.namespace = 'api';
+    this.urlPrefix = _environment.default.host;
+    this.namespace = _environment.default.namespace;
     this.timing = 200;
     this.post('/check', function () {
       const attrs = this.normalizedRequestAttrs();
@@ -1169,9 +1299,9 @@
   }
 
   function testConfig() {
-    this.urlPrefix = '';
-    this.namespace = 'api';
-    this.timing = 200;
+    this.urlPrefix = _environment.default.host;
+    this.namespace = _environment.default.namespace;
+    this.timing = 0;
     this.post('/check', function () {
       const attrs = this.normalizedRequestAttrs();
 
@@ -1292,6 +1422,7 @@
   });
   Router.map(function () {
     this.route('sign-up');
+    this.route('thanks');
   });
   var _default = Router;
   _exports.default = _default;
@@ -1310,6 +1441,44 @@
     beforeModel() {
       Ember.get(this, 'intl').setLocale(['en']);
       this.transitionTo('sign-up');
+    }
+
+  });
+
+  _exports.default = _default;
+});
+;define("coinsph/routes/sign-up", ["exports"], function (_exports) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = void 0;
+
+  var _default = Ember.Route.extend({
+    store: Ember.inject.service(),
+
+    model() {
+      const store = Ember.get(this, 'store');
+      return Ember.RSVP.hash({
+        user: store.createRecord('user')
+      });
+    },
+
+    setupController(controller, model) {
+      Ember.setProperties(controller, model);
+      Ember.setProperties(controller, {
+        password: null,
+        passwordConfirm: null,
+        serverErrors: null,
+        isValidated: false
+      });
+    },
+
+    deactivate() {
+      const controller = Ember.get(this, 'controller');
+      const user = Ember.get(controller, 'user');
+      user.unloadRecord();
     }
 
   });
@@ -1387,46 +1556,10 @@
   _exports.default = void 0;
 
   var _default = Ember.HTMLBars.template({
-    "id": "p0BYPh4s",
-    "block": "{\"symbols\":[],\"statements\":[[1,[29,\"input\",[[29,\"-input-type\",[[25,[\"type\"]]],null]],[[\"autocomplete\",\"class\",\"focus-out\",\"id\",\"key-press\",\"placeholder\",\"type\",\"value\"],[[25,[\"autocomplete\"]],[29,\"concat\",[\"form-input\",\" \",[29,\"if\",[[25,[\"showError\"]],\"form-input__invalid\"],null],\" \"],null],[29,\"action\",[[24,0,[]],\"onFocusOut\"],null],[25,[\"id\"]],[29,\"action\",[[24,0,[]],\"onKeyPress\"],null],[25,[\"placeholder\"]],[25,[\"type\"]],[25,[\"value\"]]]]],false],[0,\"\\n\"],[4,\"if\",[[25,[\"showError\"]]],null,{\"statements\":[[0,\"  \"],[7,\"span\"],[11,\"class\",\"form-input__error-message\"],[9],[1,[23,\"errorMessage\"],false],[10],[0,\"\\n\"]],\"parameters\":[]},null]],\"hasEval\":false}",
+    "id": "Ts9916ku",
+    "block": "{\"symbols\":[],\"statements\":[[1,[29,\"input\",null,[[\"autocomplete\",\"class\",\"focus-out\",\"key-press\",\"placeholder\",\"type\",\"value\"],[[25,[\"autocomplete\"]],[29,\"concat\",[\"form-input\",\" \",[29,\"if\",[[25,[\"showError\"]],\"form-input__invalid\"],null],\" \"],null],[29,\"action\",[[24,0,[]],\"onFocusOut\"],null],[29,\"action\",[[24,0,[]],\"onKeyPress\"],null],[25,[\"placeholder\"]],[25,[\"type\"]],[25,[\"value\"]]]]],false],[0,\"\\n\"],[4,\"if\",[[25,[\"showError\"]]],null,{\"statements\":[[0,\"  \"],[7,\"span\"],[11,\"data-test-error-message\",\"\"],[11,\"class\",\"form-input__error-message\"],[9],[1,[23,\"errorMessage\"],false],[10],[0,\"\\n\"]],\"parameters\":[]},null]],\"hasEval\":false}",
     "meta": {
       "moduleName": "coinsph/templates/components/form/form-input.hbs"
-    }
-  });
-
-  _exports.default = _default;
-});
-;define("coinsph/templates/components/login-form", ["exports"], function (_exports) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.default = void 0;
-
-  var _default = Ember.HTMLBars.template({
-    "id": "Az3biEr/",
-    "block": "{\"symbols\":[],\"statements\":[[7,\"div\"],[11,\"class\",\"login-form__wrapper\"],[9],[0,\"\\n  \"],[7,\"h5\"],[11,\"class\",\"login-form__title\"],[9],[1,[29,\"t\",[\"signUp.title\"],null],false],[10],[0,\"\\n\\n  \"],[7,\"form\"],[9],[0,\"\\n    \"],[7,\"div\"],[11,\"class\",\"login-form__group\"],[9],[0,\"\\n      \"],[1,[29,\"form/form-input\",null,[[\"errorMessage\",\"id\",\"isValidated\",\"isValid\",\"onInput\",\"placeholder\",\"value\"],[[29,\"or\",[[29,\"get\",[[29,\"get\",[[29,\"get\",[[29,\"get\",[[24,0,[]],\"validations\"],null],\"attrs\"],null],\"user.username\"],null],\"message\"],null],[25,[\"serverErrors\",\"username\",\"message\"]]],null],\"username\",[25,[\"isValidated\"]],[29,\"get\",[[29,\"get\",[[29,\"get\",[[29,\"get\",[[24,0,[]],\"validations\"],null],\"attrs\"],null],\"user.username\"],null],\"isValid\"],null],[29,\"action\",[[24,0,[]],[25,[\"clearServerErrors\"]]],null],[29,\"t\",[\"signUp.form.placeholders.username\"],null],[25,[\"user\",\"username\"]]]]],false],[0,\"\\n    \"],[10],[0,\"\\n\\n    \"],[7,\"div\"],[11,\"class\",\"login-form__group\"],[9],[0,\"\\n      \"],[1,[29,\"form/form-input\",null,[[\"errorMessage\",\"id\",\"isValidated\",\"isValid\",\"onInput\",\"placeholder\",\"type\",\"value\"],[[29,\"get\",[[29,\"get\",[[29,\"get\",[[29,\"get\",[[24,0,[]],\"validations\"],null],\"attrs\"],null],\"user.email\"],null],\"message\"],null],\"email\",[25,[\"isValidated\"]],[29,\"get\",[[29,\"get\",[[29,\"get\",[[29,\"get\",[[24,0,[]],\"validations\"],null],\"attrs\"],null],\"user.email\"],null],\"isValid\"],null],[29,\"action\",[[24,0,[]],[25,[\"clearServerErrors\"]]],null],[29,\"t\",[\"signUp.form.placeholders.email\"],null],\"email\",[25,[\"user\",\"email\"]]]]],false],[0,\"\\n    \"],[10],[0,\"\\n\\n    \"],[7,\"div\"],[11,\"class\",\"login-form__group\"],[9],[0,\"\\n      \"],[1,[29,\"form/form-input\",null,[[\"errorMessage\",\"autocomplete\",\"id\",\"isValidated\",\"isValid\",\"onInput\",\"placeholder\",\"type\",\"value\"],[[29,\"get\",[[29,\"get\",[[29,\"get\",[[29,\"get\",[[24,0,[]],\"validations\"],null],\"attrs\"],null],\"password\"],null],\"message\"],null],\"false\",\"password\",[25,[\"isValidated\"]],[29,\"get\",[[29,\"get\",[[29,\"get\",[[29,\"get\",[[24,0,[]],\"validations\"],null],\"attrs\"],null],\"password\"],null],\"isValid\"],null],[29,\"action\",[[24,0,[]],[25,[\"clearServerErrors\"]]],null],[29,\"t\",[\"signUp.form.placeholders.password\"],null],\"password\",[25,[\"password\"]]]]],false],[0,\"\\n    \"],[10],[0,\"\\n\\n    \"],[7,\"div\"],[11,\"class\",\"login-form__group\"],[9],[0,\"\\n      \"],[1,[29,\"form/form-input\",null,[[\"errorMessage\",\"autocomplete\",\"id\",\"isValidated\",\"isValid\",\"onInput\",\"placeholder\",\"type\",\"value\"],[[29,\"get\",[[29,\"get\",[[29,\"get\",[[29,\"get\",[[24,0,[]],\"validations\"],null],\"attrs\"],null],\"passwordConfirm\"],null],\"message\"],null],\"false\",\"passwordConfirm\",[25,[\"isValidated\"]],[29,\"get\",[[29,\"get\",[[29,\"get\",[[29,\"get\",[[24,0,[]],\"validations\"],null],\"attrs\"],null],\"passwordConfirm\"],null],\"isValid\"],null],[29,\"action\",[[24,0,[]],[25,[\"clearServerErrors\"]]],null],[29,\"t\",[\"signUp.form.placeholders.passwordConfirm\"],null],\"password\",[25,[\"passwordConfirm\"]]]]],false],[0,\"\\n    \"],[10],[0,\"\\n\\n    \"],[7,\"div\"],[11,\"class\",\"login-form__group\"],[9],[0,\"\\n      \"],[7,\"button\"],[11,\"class\",\"login-form__button\"],[11,\"id\",\"submit\"],[12,\"disabled\",[23,\"submitDisabled\"]],[11,\"type\",\"submit\"],[9],[0,\"\\n        \"],[1,[29,\"t\",[\"signUp.form.register\"],null],false],[0,\"\\n      \"],[10],[0,\"\\n    \"],[10],[0,\"\\n\\n\"],[4,\"if\",[[25,[\"serverErrors\",\"nonFieldErrors\",\"message\"]]],null,{\"statements\":[[0,\"      \"],[7,\"span\"],[11,\"class\",\"login-form__error-message\"],[9],[1,[25,[\"serverErrors\",\"nonFieldErrors\",\"message\"]],false],[10],[0,\"\\n\"]],\"parameters\":[]},null],[0,\"\\n  \"],[3,\"action\",[[24,0,[]],[29,\"perform\",[[25,[\"signUpTask\"]]],null]],[[\"on\"],[\"submit\"]]],[10],[0,\"\\n\"],[10],[0,\"\\n\"]],\"hasEval\":false}",
-    "meta": {
-      "moduleName": "coinsph/templates/components/login-form.hbs"
-    }
-  });
-
-  _exports.default = _default;
-});
-;define("coinsph/templates/index", ["exports"], function (_exports) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.default = void 0;
-
-  var _default = Ember.HTMLBars.template({
-    "id": "bfxg4kER",
-    "block": "{\"symbols\":[],\"statements\":[[7,\"h3\"],[11,\"id\",\"thanks\"],[9],[1,[29,\"t\",[\"signUp.thanks\"],null],false],[10],[0,\"\\n\"],[7,\"div\"],[9],[0,\"\\n\"],[4,\"link-to\",[\"sign-up\"],null,{\"statements\":[[0,\"    \"],[1,[29,\"t\",[\"signUp.form.register\"],null],false],[0,\"\\n\"]],\"parameters\":[]},null],[10],[0,\"\\n\"]],\"hasEval\":false}",
-    "meta": {
-      "moduleName": "coinsph/templates/index.hbs"
     }
   });
 
@@ -1441,10 +1574,28 @@
   _exports.default = void 0;
 
   var _default = Ember.HTMLBars.template({
-    "id": "/AvmpZem",
-    "block": "{\"symbols\":[],\"statements\":[[4,\"if\",[[25,[\"isRegistered\"]]],null,{\"statements\":[[0,\"  \"],[7,\"h3\"],[9],[1,[29,\"t\",[\"signUp.thanks\"],null],false],[10],[0,\"\\n  \"],[7,\"div\"],[9],[1,[29,\"t\",[\"signUp.redirectMessage\"],null],false],[10],[0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[0,\"  \"],[1,[29,\"login-form\",null,[[\"errors\",\"onSignUp\"],[[25,[\"errors\"]],[29,\"action\",[[24,0,[]],\"onSignUp\"],null]]]],false],[0,\"\\n  \"],[1,[23,\"errors-explanation\"],false],[0,\"\\n\"]],\"parameters\":[]}]],\"hasEval\":false}",
+    "id": "k9Yj77iD",
+    "block": "{\"symbols\":[],\"statements\":[[7,\"div\"],[11,\"class\",\"login-form\"],[9],[0,\"\\n  \"],[7,\"div\"],[11,\"class\",\"login-form__wrapper\"],[9],[0,\"\\n    \"],[7,\"h5\"],[11,\"class\",\"login-form__title\"],[9],[1,[29,\"t\",[\"signUp.title\"],null],false],[10],[0,\"\\n\\n    \"],[7,\"form\"],[11,\"data-test-login-form\",\"\"],[9],[0,\"\\n      \"],[1,[29,\"form/form-input\",null,[[\"errorMessage\",\"isValidated\",\"isValid\",\"onInput\",\"placeholder\",\"value\",\"data-test-signup-username\"],[[29,\"or\",[[29,\"get\",[[29,\"get\",[[29,\"get\",[[29,\"get\",[[24,0,[]],\"validations\"],null],\"attrs\"],null],\"user.username\"],null],\"message\"],null],[25,[\"serverErrors\",\"username\",\"message\"]]],null],[25,[\"isValidated\"]],[29,\"get\",[[29,\"get\",[[29,\"get\",[[29,\"get\",[[24,0,[]],\"validations\"],null],\"attrs\"],null],\"user.username\"],null],\"isValid\"],null],[29,\"action\",[[24,0,[]],[25,[\"clearServerErrors\"]]],null],[29,\"t\",[\"signUp.form.placeholders.username\"],null],[25,[\"user\",\"username\"]],true]]],false],[0,\"\\n\\n      \"],[1,[29,\"form/form-input\",null,[[\"errorMessage\",\"isValidated\",\"isValid\",\"onInput\",\"placeholder\",\"type\",\"value\",\"data-test-signup-email\"],[[29,\"get\",[[29,\"get\",[[29,\"get\",[[29,\"get\",[[24,0,[]],\"validations\"],null],\"attrs\"],null],\"user.email\"],null],\"message\"],null],[25,[\"isValidated\"]],[29,\"get\",[[29,\"get\",[[29,\"get\",[[29,\"get\",[[24,0,[]],\"validations\"],null],\"attrs\"],null],\"user.email\"],null],\"isValid\"],null],[29,\"action\",[[24,0,[]],[25,[\"clearServerErrors\"]]],null],[29,\"t\",[\"signUp.form.placeholders.email\"],null],\"email\",[25,[\"user\",\"email\"]],true]]],false],[0,\"\\n\\n      \"],[1,[29,\"form/form-input\",null,[[\"autocomplete\",\"errorMessage\",\"isValidated\",\"isValid\",\"onInput\",\"placeholder\",\"type\",\"value\",\"data-test-signup-password\"],[\"false\",[29,\"get\",[[29,\"get\",[[29,\"get\",[[29,\"get\",[[24,0,[]],\"validations\"],null],\"attrs\"],null],\"password\"],null],\"message\"],null],[25,[\"isValidated\"]],[29,\"get\",[[29,\"get\",[[29,\"get\",[[29,\"get\",[[24,0,[]],\"validations\"],null],\"attrs\"],null],\"password\"],null],\"isValid\"],null],[29,\"action\",[[24,0,[]],[25,[\"clearServerErrors\"]]],null],[29,\"t\",[\"signUp.form.placeholders.password\"],null],\"password\",[25,[\"password\"]],true]]],false],[0,\"\\n\\n      \"],[1,[29,\"form/form-input\",null,[[\"errorMessage\",\"autocomplete\",\"isValidated\",\"isValid\",\"onInput\",\"placeholder\",\"type\",\"value\",\"data-test-signup-passwordConfirm\"],[[29,\"get\",[[29,\"get\",[[29,\"get\",[[29,\"get\",[[24,0,[]],\"validations\"],null],\"attrs\"],null],\"passwordConfirm\"],null],\"message\"],null],\"false\",[25,[\"isValidated\"]],[29,\"get\",[[29,\"get\",[[29,\"get\",[[29,\"get\",[[24,0,[]],\"validations\"],null],\"attrs\"],null],\"passwordConfirm\"],null],\"isValid\"],null],[29,\"action\",[[24,0,[]],[25,[\"clearServerErrors\"]]],null],[29,\"t\",[\"signUp.form.placeholders.passwordConfirm\"],null],\"password\",[25,[\"passwordConfirm\"]],true]]],false],[0,\"\\n\\n      \"],[7,\"div\"],[11,\"class\",\"login-form__group\"],[9],[0,\"\\n        \"],[7,\"button\"],[11,\"data-test-signup-submit\",\"\"],[12,\"disabled\",[23,\"submitDisabled\"]],[11,\"class\",\"login-form__button\"],[11,\"type\",\"submit\"],[9],[0,\"\\n          \"],[1,[29,\"t\",[\"signUp.form.register\"],null],false],[0,\"\\n        \"],[10],[0,\"\\n      \"],[10],[0,\"\\n\\n\"],[4,\"if\",[[25,[\"serverErrors\",\"nonFieldErrors\",\"message\"]]],null,{\"statements\":[[0,\"        \"],[7,\"span\"],[11,\"class\",\"login-form__error-message\"],[9],[1,[25,[\"serverErrors\",\"nonFieldErrors\",\"message\"]],false],[10],[0,\"\\n\"]],\"parameters\":[]},null],[0,\"\\n    \"],[3,\"action\",[[24,0,[]],[29,\"perform\",[[25,[\"signUpTask\"]]],null]],[[\"on\"],[\"submit\"]]],[10],[0,\"\\n  \"],[10],[0,\"\\n\"],[10],[0,\"\\n\\n\"],[1,[23,\"errors-explanation\"],false],[0,\"\\n\"]],\"hasEval\":false}",
     "meta": {
       "moduleName": "coinsph/templates/sign-up.hbs"
+    }
+  });
+
+  _exports.default = _default;
+});
+;define("coinsph/templates/thanks", ["exports"], function (_exports) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = void 0;
+
+  var _default = Ember.HTMLBars.template({
+    "id": "Y3Ej0l4n",
+    "block": "{\"symbols\":[],\"statements\":[[7,\"h3\"],[11,\"data-test-thanks-title\",\"\"],[9],[1,[29,\"t\",[\"signUp.thanks\"],null],false],[10],[0,\"\\n\"],[7,\"div\"],[9],[0,\"\\n\"],[4,\"link-to\",null,[[\"route\"],[\"sign-up\"]],{\"statements\":[[0,\"    \"],[1,[29,\"t\",[\"signUp.form.register\"],null],false],[0,\"\\n\"]],\"parameters\":[]},null],[10],[0,\"\\n\"]],\"hasEval\":false}",
+    "meta": {
+      "moduleName": "coinsph/templates/thanks.hbs"
     }
   });
 
@@ -1810,7 +1961,7 @@ catch(err) {
 
 ;
           if (!runningTests) {
-            require("coinsph/app")["default"].create({"name":"coinsph","version":"0.0.0+3bee2bfa"});
+            require("coinsph/app")["default"].create({"name":"coinsph","version":"0.0.0+c8703232"});
           }
         
 //# sourceMappingURL=coinsph.map
